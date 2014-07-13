@@ -5,18 +5,18 @@ if [ ${1} ] ; then
     PREFIXNAME=${1}
     DEFINEPREFIX=${1}
     if [ ${2} ] ; then 
-	PREFIXNAME=${2}
-	DEFINEPREFIX=${2}
+    PREFIXNAME=${2}
+    DEFINEPREFIX=${2}
     fi
     if [ ${3} ] ; then
-	DEFINEPREFIX=${3}
+    DEFINEPREFIX=${3}
     fi
 
     echo "Renaming files"
     mv include/template.h include/${LIBNAME}.h
     mv src/template.c src/${LIBNAME}.c
-    mv src/include/template_internal.h src/include/${PREFIXNAME}_internal.h
-    mv tests/tmpl-tests.h tests/${PREFIXNAME}-tests.h
+    mv src/include/tmpl_internal.h src/include/${PREFIXNAME}_internal.h
+    mv tests/tmpl-tests.h tests/${LIBNAME}-tests.h
 
     echo "Updating references"
     
