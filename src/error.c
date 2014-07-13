@@ -1,7 +1,7 @@
-#include "template.h"
+#include "memepool.h"
 
-tmplReturn g_tmplError;
-const char* g_tmplErrors[] = 
+memeReturn g_memeError;
+const char* g_memeErrors[] = 
 {
     "Success",
     "Null context",

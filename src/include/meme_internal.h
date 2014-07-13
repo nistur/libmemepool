@@ -1,14 +1,14 @@
 #pragma once
-#ifndef __TMPL_INTERNAL_H__
-#define __TMPL_INTERNAL_H__
+#ifndef __MP_INTERNAL_H__
+#define __MP_INTERNAL_H__
 
-#include "template.h"
+#include "memepool.h"
 
 /***************************************
  * Library context
  * - holds current state
  ***************************************/
-struct _tmplContext
+struct _memeContext
 {
 };
 
@@ -16,20 +16,20 @@ struct _tmplContext
  * Some basic memory management wrappers
  ***************************************/
 #include <stdlib.h>
-#define tmplMalloc(x) (x*)malloc(sizeof(x))
-#define tmplFree(x)   free(x)
+#define memeMalloc(x) (x*)malloc(sizeof(x))
+#define memeFree(x)   free(x)
 
 /***************************************
  * Error handling
  ***************************************/
-extern tmplReturn  g_tmplError;
-extern const char* g_tmplErrors[];
-#define tmplReturn(x)				\
+extern memeReturn  g_memeError;
+extern const char* g_memeErrors[];
+#define memeReturn(x)				\
     {						\
-	g_tmplError = TMPL_##x;			\
-	return TMPL_##x;			\
+	g_memeError = MP_##x;			\
+	return MP_##x;			\
     }
 
 
 
-#endif/*__TMPL_INTERNAL_H__*/
+#endif/*__MP_INTERNAL_H__*/
