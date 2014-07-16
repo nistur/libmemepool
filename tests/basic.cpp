@@ -1,5 +1,6 @@
 #include "memepool-tests.h"
 #include "memepool.h"
+#include <stdio.h>
 
 TEST(InitTerminate, Basic, 0.0f,
      // initialisation

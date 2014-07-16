@@ -19,7 +19,7 @@ memeReturn memeTerminateContext(memeContext** context)
 {
     if(*context == 0)
 	   memeReturn(NO_CONTEXT);
-
+    memeClearContext(*context);
     memeFree(*context);
     *context = 0;
     memeReturn(SUCCESS);
@@ -28,4 +28,11 @@ memeReturn memeTerminateContext(memeContext** context)
 const char* memeError()
 {
     return g_memeErrors[g_memeError];
+}
+
+void* memeMallocInternal(size_t size)
+{
+    void* x = malloc(size);
+    memset(x, 0, size);
+    return x;
 }

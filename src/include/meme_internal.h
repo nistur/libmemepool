@@ -4,6 +4,9 @@
 
 #include "memepool.h"
 
+#include "../util/types.h"
+#include "../util/stb.h"
+
 /***************************************
  * Library context
  * - holds current state
@@ -12,12 +15,32 @@ struct _memeContext
 {
 };
 
+struct _memeConstruct
+{
+    memeTerm** terms;
+};
+
+struct _memeTerm
+{
+    u64   class;
+    const char* data;
+};
+
+struct _memeActor
+{
+    memeConstruct** constructs;
+};
+
 /***************************************
  * Some basic memory management wrappers
  ***************************************/
 #include <stdlib.h>
-#define memeMalloc(x) (x*)malloc(sizeof(x))
-#define memeFree(x)   free(x)
+#include <stdio.h>
+#include <string.h>
+#define memeMalloc(x) (x*)memeMallocInternal(sizeof(x))
+#define memeMallocArray(x,n) (x*)memeMallocInternal(sizeof(x) * n)
+#define memeFree(x)   if(x){ free(x); x=0; }
+void* memeMallocInternal(size_t size);
 
 /***************************************
  * Error handling
@@ -31,5 +54,6 @@ extern const char* g_memeErrors[];
     }
 
 
+#include <stdarg.h>
 
 #endif/*__MP_INTERNAL_H__*/
