@@ -7,7 +7,8 @@ memeReturn memeClearConstruct(memeConstruct* construct)
 
     if(construct->terms != 0)
     {
-        for(int i=0; i<sbcount(construct->terms); ++i)
+        int i;
+        for(i=0; i<sbcount(construct->terms); ++i)
             memeFree(construct->terms[i]);
         sbfree(construct->terms);
     }
@@ -37,11 +38,14 @@ memeReturn memeTerminateConstruct(memeConstruct** construct)
 
 memeReturn memeConstructAddTerms(memeConstruct* construct, ...)
 {
+    va_list argp;
+    char* term;
+    
     if(construct == 0)
         memeReturn(NO_CONSTRUCT);
-    va_list argp;
+
     va_start(argp, construct);
-    char* term = va_arg(argp, char*);
+    term = va_arg(argp, char*);
     while(term)
     {
         memeTerm* pTerm;
@@ -94,7 +98,8 @@ memeReturn memeConstructEvaluate(memeConstruct* construct, memeTerm** terms, int
         }
     }
     sprintf(scratch, "%s.", buffer);
-    memcpy(scratch, buffer, size);
+    memcpy(buffer, &scratch[1], size); // hack so I don't have to do a check on the first term to skip the space
+    buffer[0] = toupper(buffer[0]);
     memeFree(scratch);
 
     memeReturn(SUCCESS);

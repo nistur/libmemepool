@@ -40,3 +40,29 @@ memeReturn memeActorAddConstruct(memeActor* actor, memeConstruct* construct)
 
     memeReturn(SUCCESS);
 }
+
+memeReturn memeActorMatchConstructs(memeActor* actor, memeTerm** terms, int numTerms, memeConstruct** constructs)
+{
+    if(actor == 0)
+        memeReturn(NO_ACTOR);
+    if(terms == 0 || numTerms == 0)
+        memeReturn(NO_TERM);
+    if(constructs == 0)
+        memeReturn(NO_CONSTRUCT);
+
+    memeConstruct** tempList;
+
+    for(int i = 0; i < sbcount(actor->constructs); ++i)
+    {
+        // if one of terms isn't in the construct
+        // or if one in the construct isn't in the terms
+        // then skip this construct,
+        // otherwise add it
+    }
+
+    // *constructs = memeMallocArray(memeConstruct*, sbcount(tempList))
+    // memcpy(*constructs, *tempList, sizeof(memeConstruct*) * sbcount(tempList));
+    sbfree(tempList);
+
+    memeReturn(SUCCESS);
+}

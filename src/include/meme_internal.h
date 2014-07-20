@@ -13,6 +13,10 @@
  ***************************************/
 struct _memeContext
 {
+    // MSVC complains about empty structs (quite reasonably, I think)
+    // so just stick a member in for now until I actually create the
+    // context properly
+    char PLACEHOLDER;
 };
 
 struct _memeConstruct
@@ -37,6 +41,7 @@ struct _memeActor
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 #define memeMalloc(x) (x*)memeMallocInternal(sizeof(x))
 #define memeMallocArray(x,n) (x*)memeMallocInternal(sizeof(x) * n)
 #define memeFree(x)   if(x){ free(x); x=0; }
