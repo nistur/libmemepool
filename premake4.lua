@@ -6,6 +6,10 @@ files { "include/**.h" }
 
 defines { "MP_BUILD" }
 
+if os.is("windows") then
+	defines("WIN32")
+end
+
 configuration "Debug"
 defines { "DEBUG" }
 flags { "Symbols" }

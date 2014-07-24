@@ -44,6 +44,7 @@ memeReturn memeActorAddConstruct(memeActor* actor, memeConstruct* construct)
 memeReturn memeActorMatchConstructs(memeActor* actor, memeTerm** terms, int numTerms, memeConstruct** constructs)
 {
     memeConstruct** tempList;
+	int i;
     if(actor == 0)
         memeReturn(NO_ACTOR);
     if(terms == 0 || numTerms == 0)
@@ -51,7 +52,7 @@ memeReturn memeActorMatchConstructs(memeActor* actor, memeTerm** terms, int numT
     if(constructs == 0)
         memeReturn(NO_CONSTRUCT);
 
-    for(int i = 0; i < sbcount(actor->constructs); ++i)
+    for(i = 0; i < sbcount(actor->constructs); ++i)
     {
         // if one of terms isn't in the construct
         // or if one in the construct isn't in the terms

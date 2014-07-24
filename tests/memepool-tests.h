@@ -2,6 +2,7 @@
 #define __MP_TESTS_H__
 
 #include <string.h>
+#include <stdio.h>
 #include "testsuite/tests.h"
 
 #endif/*__MP_TESTS_H__*/

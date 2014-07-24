@@ -69,6 +69,7 @@ memeReturn memeConstructAddTerms(memeConstruct* construct, ...)
 memeReturn memeConstructEvaluate(memeConstruct* construct, memeTerm** terms, int numTerms, char* buffer, int size)
 {
     char* scratch;
+	int i, j;
     if(construct == 0)
         memeReturn(NO_CONSTRUCT);
     if(terms == 0 || numTerms == 0)
@@ -78,14 +79,14 @@ memeReturn memeConstructEvaluate(memeConstruct* construct, memeTerm** terms, int
 
     scratch = memeMallocArray(char, size + 1);
 
-    for(int i=0; i<sbcount(construct->terms); ++i)
+    for(i=0; i<sbcount(construct->terms); ++i)
     {
         memeTerm* pTerm;
         memcpy(scratch, buffer, size);
         pTerm = construct->terms[i];
         if(pTerm->class)
         {
-            for(int j=0; j<numTerms; ++j)
+            for(j=0; j<numTerms; ++j)
             {
                 if(terms[j]->class == pTerm->class)
                 {

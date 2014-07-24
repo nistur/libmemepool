@@ -43,7 +43,6 @@ TEST(SimpleTerms, Construct, 0.0f,
      }
     );
 
-#include <stdio.h>
 TEST(Evaluate, Construct, 0.0f,
      // initialisation
      {
