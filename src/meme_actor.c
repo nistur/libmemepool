@@ -43,14 +43,13 @@ memeReturn memeActorAddConstruct(memeActor* actor, memeConstruct* construct)
 
 memeReturn memeActorMatchConstructs(memeActor* actor, memeTerm** terms, int numTerms, memeConstruct** constructs)
 {
+    memeConstruct** tempList;
     if(actor == 0)
         memeReturn(NO_ACTOR);
     if(terms == 0 || numTerms == 0)
         memeReturn(NO_TERM);
     if(constructs == 0)
         memeReturn(NO_CONSTRUCT);
-
-    memeConstruct** tempList;
 
     for(int i = 0; i < sbcount(actor->constructs); ++i)
     {
