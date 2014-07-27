@@ -52,10 +52,10 @@ void* memeMallocInternal(size_t size);
  ***************************************/
 extern memeReturn  g_memeError;
 extern const char* g_memeErrors[];
-#define memeReturn(x)				\
-    {						\
-	g_memeError = MP_##x;			\
-	return MP_##x;			\
+#define memeReturn(x)                \
+    {                                \
+        g_memeError = MP_##x;        \
+        return MP_##x;               \
     }
 
 

@@ -33,6 +33,19 @@ memeReturn memeTerminateTerm(memeTerm** term)
     memeReturn(SUCCESS);
 }
 
+memeReturn memeTerminateTermList(memeTermList* list)
+{
+    int i;
+    if(list == 0)
+        memeReturn(NO_TERM);
+
+    for(i=0; i<sbcount(*list); ++i)
+        memeTerminateTerm(&(*list)[i]);
+    sbfree(*list);
+    list = 0;
+    memeReturn(SUCCESS);
+}
+
 memeReturn memeTermSetClass(memeTerm* term, const char* classStr)
 {
     if(term == 0)
@@ -49,6 +62,21 @@ memeReturn memeTermSetData(memeTerm* term, const char* data)
         memeReturn(NO_TERM);
 
     term->data = data;
+
+    memeReturn(SUCCESS);
+}
+
+memeReturn memeTermGetData(memeTerm* term, char* data, int size)
+{
+    if(term == 0)
+        memeReturn(NO_TERM);
+    if(data == 0 || size == 0)
+        memeReturn(NO_DATA);
+
+    if(size == -1)
+        size = strlen(term->data);
+
+    memcpy(data, term->data, size);
 
     memeReturn(SUCCESS);
 }

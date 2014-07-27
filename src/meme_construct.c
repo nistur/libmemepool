@@ -66,7 +66,7 @@ memeReturn memeConstructAddTerms(memeConstruct* construct, ...)
     memeReturn(SUCCESS);
 }
 
-memeReturn memeConstructEvaluate(memeConstruct* construct, memeTerm** terms, int numTerms, char* buffer, int size)
+memeReturn memeConstructEvaluate(memeConstruct* construct, memeTerm** terms, int numTerms, memeTermList* outTerms)
 {
     char* scratch;
 	int i, j;
@@ -75,9 +75,14 @@ memeReturn memeConstructEvaluate(memeConstruct* construct, memeTerm** terms, int
     if(terms == 0 || numTerms == 0)
         memeReturn(NO_TERM);
 
-    buffer[0] = 0;
+    int size = 256;
+    char buffer[256];
+    buffer[0] = 0; // scratch memcpy's from this, so need to make it an empty string to begin with
 
     scratch = memeMallocArray(char, size + 1);
+    memeTerm* outTerm;
+    memeInitTerm(&outTerm);
+    sbpush(*outTerms, outTerm);
 
     for(i=0; i<sbcount(construct->terms); ++i)
     {
@@ -104,6 +109,8 @@ memeReturn memeConstructEvaluate(memeConstruct* construct, memeTerm** terms, int
     memcpy(buffer, &scratch[1], size); // hack so I don't have to do a check on the first term to skip the space
     buffer[0] = toupper(buffer[0]);
     memeFree(scratch);
+
+    memeTermSetData(outTerm, buffer);
 
     memeReturn(SUCCESS);
 }

@@ -62,13 +62,20 @@ TEST(Evaluate, Construct, 0.0f,
      },
      // test
      {
-        ASSERT(memeConstructEvaluate(m_data.construct, m_data.terms, 2, m_data.buffer, 256) == MP_SUCCESS);
+        ASSERT(memeConstructEvaluate(m_data.construct, m_data.terms, 2, &m_data.output) == MP_SUCCESS);
+
+        // This should be tested in the Term group, not here
+        memeTermGetData(m_data.output[0], m_data.buffer, 256);
+
         ASSERT(strcmp(m_data.buffer, "The banana is tasty.") == 0);
+
+
      },
      // data
      {
      memeConstruct* construct;
      memeTerm*      terms[2];
+     memeTermList   output;
      char           buffer[256];
      }
     );

@@ -29,6 +29,7 @@ typedef struct _meme        meme;
 #define MP_NO_CONSTRUCT 2
 #define MP_NO_ACTOR     3
 #define MP_NO_TERM      4
+#define MP_NO_DATA      5
 
 MP_EXPORT memeReturn   memeInitContext     (memeContext** context);
 MP_EXPORT memeReturn   memeTerminateContext(memeContext** context);
